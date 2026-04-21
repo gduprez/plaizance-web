@@ -19,3 +19,24 @@ jobs:
           script: |
             cd ${{ secrets.SITE_PATH }}
             git pull --ff-only
+
+      - name: Send notification email
+        if: always()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.MAIL_SERVER }}
+          server_port: ${{ secrets.MAIL_PORT }}
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          from: ${{ secrets.MAIL_USERNAME }}
+          to: gd@nauticoncept.com
+          subject: "[plaizance.com] Déploiement ${{ job.status }} — ${{ github.sha }}"
+          body: |
+            Déploiement du site www.plaizance.com terminé.
+
+            Statut      : ${{ job.status }}
+            Branche     : ${{ github.ref_name }}
+            Commit      : ${{ github.sha }}
+            Message     : ${{ github.event.head_commit.message }}
+            Auteur      : ${{ github.event.head_commit.author.name }}
+            Run GitHub  : ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
