@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           from: ${{ secrets.MAIL_USERNAME }}
-          to: gd@nauticoncept.com
+          to: gd@nauticoncept.com, fc@libertypass.club
           subject: "[plaizance.com] Déploiement ${{ job.status }} — ${{ github.sha }}"
           body: |
             Déploiement du site www.plaizance.com terminé.
