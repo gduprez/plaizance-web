@@ -722,7 +722,8 @@ body, .hero-content {
 /* CHECK ICON */
 /* STYLE PAR DÉFAUT (CHECK) */
 .card-features li::before {
-  content: "✔";
+  content: "✔\FE0E";
+  font-variant-emoji: text;
   position: absolute;
   left: 0;
   color: #2ecc71;
@@ -1813,3 +1814,150 @@ html {
   }
 
 }
+
+
+
+
+
+@media (max-width: 768px) {
+
+  .hero {
+    height: 100dvh; /* mieux que 100vh en mobile */
+    min-height: 100dvh;
+    background-size: cover;
+    background-position: center center;
+    padding: 0 !important;
+  }
+
+}
+
+
+
+
+.features-image.right {
+  background-position: center center !important;
+  background-size: cover;
+}
+
+
+@media (max-width: 768px) {
+
+  .features-image.right {
+    height: 300px; /* ajuste si besoin */
+    background-position: center bottom;
+    background-size: cover;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .features-image.right {
+    background-position: center 75% !important;
+    background-size: cover !important;
+  }
+
+}
+
+
+.section-features-v2 {
+  padding-bottom: 0 !important;
+}
+
+
+
+
+
+
+.features-layout {
+  align-items: stretch;
+}
+
+.features-image,
+.features-center-wrapper {
+  height: 100%;
+}
+
+
+.features-image {
+  min-height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+
+
+.card-note {
+    margin-bottom: 35px;
+  }
+
+
+
+  .card-note {
+    font-size: 16px !important;
+}
+
+
+.card-btn {
+  -webkit-appearance: none;
+  appearance: none;
+
+  background: linear-gradient(135deg, #ff7e5f, #e0a34d); /* ton gradient */
+  border: 1px solid #ff7e5f;
+  color: white;
+
+  outline: none;
+  box-shadow: none;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  .popup {
+    align-items: flex-start;
+    overflow-y: auto;
+    padding: 20px 10px;
+  }
+
+  .popup-content {
+    margin-top: 20px;
+    width: 100%;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .popup {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  /* FORCE TOUS LES POPUPS */
+  .popup,
+  .hs-form,
+  .hbspt-form,
+  .popup-content {
+    align-items: flex-start !important;
+  }
+
+  .popup {
+    padding: 20px 10px !important;
+    overflow-y: auto !important;
+  }
+
+  .popup-content {
+    margin-top: 20px !important;
+    max-height: calc(100vh - 40px) !important;
+    overflow-y: auto !important;
+  }
+
+}
+
+  
