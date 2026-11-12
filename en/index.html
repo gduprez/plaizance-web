@@ -510,7 +510,7 @@
         <p>
           Fill in the form and we’ll call you back. We are committed to responding as quickly as possible.
         </p>
-        <button class="contact-btn" onclick="openPopup('Callback request')">
+        <button class="contact-btn" onclick="openPopup()">
         Fill in the form
         </button>
       </div>
@@ -627,22 +627,19 @@
 
 
 
-<div class="popup" id="popup" data-offer-label="Plan: " data-hubspot-form-id="31c5bf3a-4a85-44ba-98a1-3683eb51174e">
+<div class="popup" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
-
-    <h3 id="popup-title">Information request</h3>
-
-    <!-- HUBSPOT FORM -->
-    <div id="hubspot-form"></div>
-
+    <h3 id="popup-title"></h3>
+    <!-- formulaire Brevo généré par js/contact-form.js -->
+    <div id="contact-form"></div>
   </div>
 </div>
 
 
 
-<script src="https://js.hsforms.net/forms/embed/v2.js"></script>
 
+<script src="../js/contact-form.js"></script>
 <script src="../js/main.js"></script>
 
 

@@ -9,7 +9,8 @@ Site vitrine de **Plaizance**, service de conciergerie nautique connectée : sur
 - [politique-confidentialite.html](politique-confidentialite.html) — politique de confidentialité
 - [en/](en/) — version anglaise (`index.html`, `legal-notice.html`, `privacy-policy.html`)
 - [styles.css](styles.css) — feuille de style commune à toutes les langues
-- [js/main.js](js/main.js) — script commun (menu mobile, sélecteur de langue, popup HubSpot)
+- [js/main.js](js/main.js) — script commun (menu mobile, sélecteur de langue, popup)
+- [js/contact-form.js](js/contact-form.js) — formulaire de contact Brevo, commun à toutes les langues (textes traduits dans `CONTACT_FORM_I18N`)
 - [images/](images/) — logos, photos, visuels ; drapeaux dans [images/flags/](images/flags/)
 
 ## Langues
@@ -24,8 +25,20 @@ Pour ajouter une langue (ex. espagnol, code `es`) :
 3. Dans **toutes** les pages, ajouter :
    - la balise `<link rel="alternate" hreflang="es" href="…">` dans le `<head>` ;
    - une entrée `<li>` dans le menu `.lang-switch` (desktop) et dans `.mobile-lang` (mobile).
-4. Textes affichés par le JS : attributs `data-offer-label` et `data-hubspot-form-id` sur `#popup`
-   (un formulaire HubSpot traduit peut être créé et son ID renseigné ici).
+4. Formulaire de contact : créer le formulaire dans Brevo (mêmes attributs de contact), puis ajouter
+   la langue dans `CONTACT_FORM_I18N` de [js/contact-form.js](js/contact-form.js) avec son adresse `action`
+   (à prendre dans le code d'intégration HTML Brevo) et les textes traduits.
+
+## Formulaire de contact (Brevo)
+
+Le popup de contact contient un formulaire Brevo généré par [js/contact-form.js](js/contact-form.js),
+à partir d'une version allégée du code d'intégration HTML de Brevo (pas besoin de recoller ce code dans les pages).
+
+- Le script Brevo (`sibforms.com/.../main.js`, ~460 Ko) n'est chargé qu'à la première ouverture du popup.
+- Le style est dans `styles.css` (la feuille de style Brevo n'est pas utilisée).
+- Le champ téléphone n'utilise pas le composant Brevo : il est vérifié et nettoyé par [js/main.js](js/main.js).
+- Si un champ est ajouté dans Brevo, l'ajouter aussi dans le modèle de `js/contact-form.js`
+  (même `name` que dans le code d'intégration Brevo).
 
 ## Stack
 
