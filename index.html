@@ -20,6 +20,11 @@
   <!-- CANONICAL -->
   <link rel="canonical" href="https://www.plaizance.com/">
 
+  <!-- LANGUES -->
+  <link rel="alternate" hreflang="fr" href="https://www.plaizance.com/">
+  <link rel="alternate" hreflang="en" href="https://www.plaizance.com/en/">
+  <link rel="alternate" hreflang="x-default" href="https://www.plaizance.com/">
+
   <!-- FAVICON -->
   <link rel="icon" href="images/logo-degrade.png" type="image/png">
 
@@ -56,6 +61,15 @@
      <a href="#offres">NOS OFFRES</a>
      <a href="#contact">CONTACT</a>
      <a href="#about">À PROPOS</a>
+
+     <details class="lang-switch">
+       <summary aria-label="Langue : Français">
+         <img src="images/flags/fr.svg" alt="" class="lang-flag">FR
+       </summary>
+       <ul class="lang-menu">
+         <li><a href="en/" hreflang="en" lang="en"><img src="images/flags/en.svg" alt="" class="lang-flag">English</a></li>
+       </ul>
+     </details>
    </div>
 
    <div class="burger" id="burger">
@@ -72,6 +86,9 @@
  <a href="#offres">NOS OFFRES</a>
  <a href="#contact">CONTACT</a>
  <a href="#about">À PROPOS</a>
+ <ul class="mobile-lang">
+   <li><a href="en/" hreflang="en" lang="en"><img src="images/flags/en.svg" alt="" class="lang-flag">English</a></li>
+ </ul>
 </div>
 
 <section class="hero">
@@ -279,8 +296,8 @@
   </ul>
 
   <p class="card-note">
-    *contrôle des amarres, des pare-battages, de présence d’eau à l’extérieur et d’effraction + rapport photo
-    **mise en marche de l’électronique
+    *contrôle des amarres, des pare-battages, de présence d’eau à l’extérieur et d’effraction + rapport photo<br>
+    **mise en marche de l’électronique<br>
     ***25€/mètre linéaire supplémentaire et selon type de coque (facturé mensuellement)
 
   </p>
@@ -323,7 +340,7 @@
 
   <p class="card-note">
   *contrôle des amarres, des pare-battages, de présence d’eau à l’extérieur et d’effraction + rapport photo<br>
-  **mise en marche de l’électronique
+  **mise en marche de l’électronique<br>
   ***50€/mètre linéaire supplémentaire et selon type de coque (facturé mensuellement)
 </p>
 
@@ -666,7 +683,7 @@
 
 
 
-<div class="popup" id="popup">
+<div class="popup" id="popup" data-offer-label="Offre : " data-hubspot-form-id="31c5bf3a-4a85-44ba-98a1-3683eb51174e">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
 
@@ -693,59 +710,7 @@
 
 
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
- const burger = document.getElementById('burger');
- const mobileMenu = document.getElementById('mobileMenu');
-
- burger.addEventListener('click', () => {
-   mobileMenu.classList.toggle('active');
-   burger.classList.toggle('active');
- });
-
- // fermeture menu mobile au clic
- const links = mobileMenu.querySelectorAll("a");
- links.forEach(link => {
-   link.addEventListener("click", () => {
-     mobileMenu.classList.remove("active");
-     burger.classList.remove("active");
-   });
- });
-
-});
-
-/* ================= POPUP ================= */
-
-let formLoaded = false;
-
-function openPopup(offerName = "") {
-
-  const popup = document.getElementById("popup");
-  popup.style.display = "flex";
-
-  // changer le titre
-  if (offerName) {
-    document.getElementById("popup-title").innerText = "Offre : " + offerName;
-  }
-
-  // 🔥 VIDER LE CONTAINER (important sinon bug)
-  const formContainer = document.getElementById("hubspot-form");
-  formContainer.innerHTML = "";
-
-  // 🔥 recréer le formulaire à chaque ouverture
-  hbspt.forms.create({
-    portalId: "9025931",
-    formId: "31c5bf3a-4a85-44ba-98a1-3683eb51174e",
-    region: "na1",
-    target: "#hubspot-form"
-  });
-
-}
-
-function closePopup() {
- document.getElementById("popup").style.display = "none";
-}
-</script>
+<script src="js/main.js"></script>
 
 
 
