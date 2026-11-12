@@ -1941,8 +1941,6 @@ html {
 
   /* FORCE TOUS LES POPUPS */
   .popup,
-  .hs-form,
-  .hbspt-form,
   .popup-content {
     align-items: flex-start !important;
   }
@@ -2076,4 +2074,229 @@ html {
   align-items: center;
   gap: 10px;
   font-size: 16px;
+}
+
+/* ================= FORMULAIRE BREVO (popup) ================= */
+/* Remplace sib-styles.css de Brevo. Les classes sib-*, form__entry, entry__*
+   sont pilotées par le script Brevo (affichage des erreurs, messages, chargement). */
+
+.popup-content {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.popup-content h3 {
+  font-family: "Montserrat", sans-serif;
+  color: #171C3E;
+  margin: 0 0 20px;
+  padding-right: 30px;
+}
+
+.sib-form {
+  font-family: "Montserrat", sans-serif;
+  color: #171C3E;
+  text-align: left;
+}
+
+.sib-form-block {
+  margin-bottom: 16px;
+  min-width: 0;
+}
+
+.sib-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 16px;
+}
+
+.sib-form .entry__label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.sib-form .entry__label[data-required]::after {
+  content: " *";
+  color: #FF7A59;
+}
+
+.sib-form .entry__field {
+  display: flex;
+}
+
+.sib-form .input,
+.sib-form .phone-select {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #DCDCDC;
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 15px;
+  color: #171C3E;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.sib-form .input:focus,
+.sib-form .phone-select:focus {
+  outline: none;
+  border-color: #E6B85C;
+  box-shadow: 0 0 0 3px rgba(230, 184, 92, 0.25);
+}
+
+.sib-form .input::placeholder {
+  color: #A0A4B8;
+}
+
+/* téléphone : indicatif + numéro */
+.phone-input {
+  display: flex;
+  gap: 8px;
+}
+
+.phone-input .phone-code {
+  flex: 0 0 115px;
+}
+
+.phone-input .phone-number {
+  flex: 1;
+  min-width: 0;
+}
+
+/* cases à cocher / boutons radio */
+.sib-form .entry__choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.sib-form .entry__choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.sib-form .entry__choice input {
+  width: 18px;
+  height: 18px;
+  margin: 1px 0 0;
+  flex-shrink: 0;
+  accent-color: #FF7A59;
+}
+
+.sib-form .entry__specification,
+.sib-form__declaration {
+  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6B7088;
+}
+
+.sib-form__declaration {
+  margin: 0 0 16px;
+}
+
+.sib-form__declaration a {
+  color: #171C3E;
+}
+
+/* erreurs (affichées par le script Brevo) */
+.sib-form .entry__error {
+  display: none;
+  margin-top: 6px;
+  font-size: 13px;
+  color: #C0392B;
+}
+
+.sib-form .entry_errored .input {
+  border-color: #C0392B;
+}
+
+/* bouton d'envoi */
+.sib-form-block__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ff7e5f, #e0a34d);
+  color: #fff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.sib-form-block__button:hover {
+  opacity: 0.9;
+}
+
+.sib-form-block__button-disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.sib-form-block__button svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  animation: sib-spin 1s linear infinite;
+}
+
+.sib-hide-loader-icon {
+  display: none;
+}
+
+@keyframes sib-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* messages de succès / d'erreur */
+.sib-form-message-panel {
+  display: none;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.sib-form-message-panel--active {
+  display: block;
+}
+
+.sib-form-message-panel--success {
+  color: #0B5E33;
+  background: #E7FAF0;
+  border-color: #2ecc71;
+}
+
+.sib-form-message-panel--error {
+  color: #7A1F1F;
+  background: #FFEDED;
+  border-color: #FF4949;
+}
+
+/* anti-spam : champ invisible */
+.input--hidden {
+  display: none !important;
+}
+
+@media (max-width: 480px) {
+  .popup-content {
+    padding: 30px 20px;
+  }
+
+  .sib-form-row {
+    grid-template-columns: 1fr;
+  }
 }

@@ -552,10 +552,9 @@
         <p>
           Remplissez le formulaire afin d’être rappelé. Nous nous engageons à vous répondre dans les meilleurs délais.
         </p>
-        <button class="contact-btn" onclick="openPopup('Demande de rappel')">
+        <button class="contact-btn" onclick="openPopup()">
         Remplir le formulaire
         </button>
-        </a>
       </div>
 
     </div>
@@ -683,15 +682,12 @@
 
 
 
-<div class="popup" id="popup" data-offer-label="Offre : " data-hubspot-form-id="31c5bf3a-4a85-44ba-98a1-3683eb51174e">
+<div class="popup" id="popup">
   <div class="popup-content">
     <span class="close" onclick="closePopup()">×</span>
-
-    <h3 id="popup-title">Demande d'information</h3>
-
-    <!-- FORMULAIRE HUBSPOT -->
-    <div id="hubspot-form"></div>
-
+    <h3 id="popup-title"></h3>
+    <!-- formulaire Brevo généré par js/contact-form.js -->
+    <div id="contact-form"></div>
   </div>
 </div>
 
@@ -700,7 +696,6 @@
 
 
 
-<script src="https://js.hsforms.net/forms/embed/v2.js"></script>
 
 
 
@@ -710,6 +705,7 @@
 
 
 
+<script src="js/contact-form.js"></script>
 <script src="js/main.js"></script>
 
 
