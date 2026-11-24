@@ -2570,6 +2570,28 @@ html {
   background: #FFF;
 }
 
+/* Grand écran : 4 colonnes, la 5e zone (eaux intérieures) se place sous la 4e (Corse) */
+@media (min-width: 1100px) {
+  .ports-list__zones {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .ports-list__zone:nth-child(-n+3) {
+    grid-row: 1 / span 2;
+  }
+
+  .ports-list__zone:nth-child(4) {
+    grid-column: 4;
+    grid-row: 1;
+  }
+
+  .ports-list__zone:nth-child(5) {
+    grid-column: 4;
+    grid-row: 2;
+  }
+}
+
 .ports-list__zone h3 {
   margin-bottom: 10px;
   font-size: 17px;

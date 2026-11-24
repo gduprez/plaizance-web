@@ -1,10 +1,12 @@
 /* Carte des ports d'intervention (Leaflet), commune à toutes les langues.
  *
- * Ajouter / modifier un port : éditer uniquement la liste PORTS ci-dessous.
- * La carte ET la liste repliable sous la carte sont générées à partir de cette liste.
+ * La liste des ports n'est PAS dans ce fichier : elle est écrite en HTML dans chaque page
+ * (index.html et en/index.html, bloc #ports-list), pour être lue par les moteurs de recherche
+ * sans exécuter de JavaScript. Ce script lit cette liste pour placer les repères.
+ * Ajouter / modifier un port : éditer le <li> correspondant dans TOUTES les pages.
  *
- * Ajouter une langue : ajouter ses textes dans PORTS_MAP_I18N et dans ZONES
- * (clé = <html lang="...">). Le titre et l'introduction sont dans le HTML de chaque page.
+ * Ajouter une langue : ajouter ses textes dans PORTS_MAP_I18N (clé = <html lang="...">).
+ * Le titre, l'introduction et la liste des ports sont dans le HTML de chaque page.
  *
  * Leaflet (vendor/leaflet/, ~160 Ko) et les fonds de carte IGN ne sont chargés
  * que lorsque le visiteur approche de la section.
@@ -12,56 +14,6 @@
  * Le bouton « Choisir mon offre » d'une fiche appelle rememberHomePort() (js/main.js),
  * qui préremplit le champ « Port d'attache » du formulaire de contact.
  */
-
-// zone : clé de ZONES. partenaire : "" si aucun partenaire à afficher.
-const PORTS = [
-  // Manche
-  { ville: "Fécamp",                 partenaire: "MG Nautic",                         zone: "manche",       lat: 49.760, lng:  0.370 },
-  { ville: "Saint-Vaast-la-Hougue",  partenaire: "Cherbourg Plaisance",               zone: "manche",       lat: 49.588, lng: -1.266 },
-  { ville: "Cherbourg",              partenaire: "Cherbourg Plaisance",               zone: "manche",       lat: 49.648, lng: -1.620 },
-  { ville: "Diélette",               partenaire: "Cherbourg Plaisance",               zone: "manche",       lat: 49.555, lng: -1.859 },
-  { ville: "Carteret",               partenaire: "Cherbourg Plaisance",               zone: "manche",       lat: 49.376, lng: -1.791 },
-  { ville: "Saint-Cast-le-Guildo",   partenaire: "Fil Marine",                        zone: "manche",       lat: 48.638, lng: -2.247 },
-
-  // Atlantique
-  { ville: "Brest",                  partenaire: "Naviouest",                         zone: "atlantique",   lat: 48.382, lng: -4.485 },
-  { ville: "Combrit–Sainte-Marine",  partenaire: "Sur les flots",                     zone: "atlantique",   lat: 47.875, lng: -4.117 },
-  { ville: "Arradon (Vannes)",       partenaire: "Le Blan Marine",                    zone: "atlantique",   lat: 47.616, lng: -2.820 },
-  { ville: "Pornichet",              partenaire: "KER Nautic Services",               zone: "atlantique",   lat: 47.258, lng: -2.348 },
-  { ville: "Hendaye",                partenaire: "Bateaux Basques",                   zone: "atlantique",   lat: 43.370, lng: -1.782 },
-
-  // Méditerranée
-  { ville: "Canet-en-Roussillon",    partenaire: "",                                  zone: "mediterranee", lat: 42.702, lng:  3.035 },
-  { ville: "Port Leucate",           partenaire: "AB Yachting",                       zone: "mediterranee", lat: 42.864, lng:  3.042 },
-  { ville: "Sète",                   partenaire: "SAS Grace",                         zone: "mediterranee", lat: 43.398, lng:  3.706 },
-  { ville: "Port Camargue",          partenaire: "Lion Yachting",                     zone: "mediterranee", lat: 43.524, lng:  4.128 },
-  { ville: "Fos-sur-Mer",            partenaire: "Côte Bleue Plaisance",              zone: "mediterranee", lat: 43.429, lng:  4.945 },
-  { ville: "Saint-Cyr-sur-Mer",      partenaire: "ND Plaisance / Boat Club Madrague", zone: "mediterranee", lat: 43.170, lng:  5.695 },
-  { ville: "Bandol",                 partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.135, lng:  5.752 },
-  { ville: "Sanary-sur-Mer",         partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.117, lng:  5.800 },
-  { ville: "Six-Fours-les-Plages",   partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.100, lng:  5.810 },
-  { ville: "Les Embiez",             partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.079, lng:  5.783 },
-  { ville: "Saint-Mandrier-sur-Mer", partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.079, lng:  5.927 },
-  { ville: "Toulon",                 partenaire: "Edouard Rohart FreeSpi",            zone: "mediterranee", lat: 43.119, lng:  5.933 },
-  { ville: "Port Grimaud",           partenaire: "LC Yachting",                       zone: "mediterranee", lat: 43.272, lng:  6.580 },
-  { ville: "Fréjus",                 partenaire: "Selestiboat",                       zone: "mediterranee", lat: 43.421, lng:  6.748 },
-
-  // Corse
-  { ville: "Ajaccio",                partenaire: "Motorship Nautique",                zone: "corse",        lat: 41.919, lng:  8.742 },
-  { ville: "Propriano",              partenaire: "Motorship Nautique",                zone: "corse",        lat: 41.677, lng:  8.900 },
-
-  // Lacs
-  { ville: "Aix-les-Bains",          partenaire: "",                                  zone: "lacs",         lat: 45.703, lng:  5.887 }
-];
-
-// Façades, dans l'ordre d'affichage de la liste
-const ZONES = [
-  { cle: "manche",       fr: "Manche",       en: "English Channel" },
-  { cle: "atlantique",   fr: "Atlantique",   en: "Atlantic" },
-  { cle: "mediterranee", fr: "Méditerranée", en: "Mediterranean" },
-  { cle: "corse",        fr: "Corse",        en: "Corsica" },
-  { cle: "lacs",         fr: "Lacs",         en: "Lakes" }
-];
 
 const PORTS_MAP_I18N = {
   fr: {
@@ -101,37 +53,26 @@ const PORTS_MAP_I18N = {
   let leafletPromise = null;
   const reperes = new Map(); // port -> repère Leaflet
 
-  /* ================= LISTE REPLIABLE ================= */
+  /* ================= LISTE DES PORTS (lue dans le HTML) ================= */
 
+  // <li data-lat data-lng><button>Ville</button><span>Partenaire</span></li>
+  const PORTS = [];
   if (listEl) {
-    for (const zone of ZONES) {
-      const ports = PORTS.filter(p => p.zone === zone.cle);
-      if (!ports.length) continue;
-
-      const groupe = document.createElement("div");
-      groupe.className = "ports-list__zone";
-      const titre = document.createElement("h3");
-      titre.textContent = zone[lang] || zone.fr;
-      const ul = document.createElement("ul");
-
-      for (const port of ports) {
-        const li = document.createElement("li");
-        const bouton = document.createElement("button");
-        bouton.type = "button";
-        bouton.textContent = port.ville;
-        bouton.addEventListener("click", () => showPort(port));
-        li.append(bouton);
-        if (port.partenaire) {
-          const partenaire = document.createElement("span");
-          partenaire.textContent = port.partenaire;
-          li.append(partenaire);
-        }
-        ul.append(li);
-      }
-      groupe.append(titre, ul);
-      listEl.append(groupe);
-    }
+    listEl.querySelectorAll("li[data-lat][data-lng]").forEach(li => {
+      const bouton = li.querySelector("button");
+      const partenaire = li.querySelector("span");
+      const port = {
+        ville: (bouton || li).textContent.trim(),
+        partenaire: partenaire ? partenaire.textContent.trim() : "",
+        lat: parseFloat(li.dataset.lat),
+        lng: parseFloat(li.dataset.lng)
+      };
+      if (!port.ville || isNaN(port.lat) || isNaN(port.lng)) return; // ligne incomplète : ignorée
+      PORTS.push(port);
+      if (bouton) bouton.addEventListener("click", () => showPort(port));
+    });
   }
+  if (!PORTS.length) return;
 
   /* ================= CHARGEMENT DIFFÉRÉ DE LEAFLET ================= */
 
