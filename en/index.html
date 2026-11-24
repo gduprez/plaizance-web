@@ -60,6 +60,7 @@
 
    <div class="nav-right">
      <a href="#service" >THE SERVICE</a>
+     <a href="#ports">OUR PORTS</a>
      <a href="#offres">OUR PLANS</a>
      <a href="#contact">CONTACT</a>
      <a href="#about">ABOUT</a>
@@ -85,6 +86,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
  <a href="#service">THE SERVICE</a>
+ <a href="#ports">OUR PORTS</a>
  <a href="#offres">OUR PLANS</a>
  <a href="#contact">CONTACT</a>
  <a href="#about">ABOUT</a>
@@ -202,6 +204,26 @@
 
 
 
+<section class="section-ports" id="ports" aria-labelledby="ports-titre">
+  <div class="section-ports__contenu">
+    <h2 class="ports-title" id="ports-titre">Where we operate</h2>
+    <p class="section-ports__intro">From the English Channel to the Mediterranean, Plaizance relies on marine professionals for on-board visits and work in port. Select a marker to discover the local partner.</p>
+
+    <!-- carte Leaflet générée par js/ports-map.js -->
+    <div class="section-ports__cadre">
+      <div class="section-ports__carte" id="ports-map" role="region" aria-label="Map of the ports where Plaizance operates"></div>
+    </div>
+
+    <!-- liste des ports générée par js/ports-map.js (un seul endroit à modifier : PORTS) -->
+    <details class="ports-list">
+      <summary>See the list of ports</summary>
+      <div class="ports-list__zones" id="ports-list"></div>
+    </details>
+  </div>
+</section>
+
+
+
 <section class="section-pricing" id="offres">
   <h2 class="pricing-title">
     Our connected concierge plans
@@ -268,7 +290,7 @@
     <li>1 monthly inspection report*</li>
     <li>Call-out in the event of a weather alert or an alert from your connected boat</li>
     <li class="plus"><strong>1 monthly boat health report**</strong></li>
-    <li class="plus"><strong>Monthly deck wash-down (boats up to 10 m***)</strong></li>
+    <li class="plus"><strong>Monthly deck wash-down, subject to fresh water being available and permitted for this use on the pontoon (boats up to 10 m***)</strong></li>
   </ul>
 
   <p class="card-note">
@@ -308,9 +330,9 @@
     <li class="plus"><strong>2 monthly inspection reports*</strong></li>
     <li>Call-out in the event of a weather alert or an alert from your connected boat</li>
     <li>1 monthly boat health report**</li>
-    <li>Monthly deck wash-down (boats up to 10 m***)</li>
+    <li>Monthly deck wash-down, subject to fresh water being available and permitted for this use on the pontoon (boats up to 10 m***)</li>
     <li class="plus"><strong>Monthly airing of the boat’s interior</strong></li>
-    <li class="plus"><strong>Full pre-season clean</strong></li>
+    <li class="plus"><strong>Pre-season exterior clean, interior clean available on request</strong></li>
     <li class="plus"><strong>End-of-season winterisation (engine excluded)</strong></li>
   </ul>
 
@@ -348,9 +370,9 @@
     <li>2 monthly inspection reports*</li>
     <li>Call-out in the event of a weather alert or an alert from your connected boat</li>
     <li>1 monthly boat health report**</li>
-    <li>Monthly deck wash-down (boats up to 10 m, longer boats on request)</li>
+    <li>Monthly deck wash-down, subject to fresh water being available and permitted for this use on the pontoon (boats up to 10 m, longer boats on request)</li>
     <li>Monthly airing of the boat’s interior</li>
-    <li>Full pre-season clean</li>
+    <li>Pre-season exterior clean, interior clean available on request</li>
     <li>End-of-season winterisation (engine excluded)</li>
     <li class="plus"><strong>Pre-season care of upholstery, canvas and stainless steel</strong></li>
     <li class="plus"><strong>Boat preparation and provisioning before each outing (up to 5)</strong></li>
@@ -590,6 +612,7 @@
         <h4>Navigation</h4>
         <ul>
           <li><a href="#service">The service</a></li>
+          <li><a href="#ports">Our ports</a></li>
           <li><a href="#offres">Our plans</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -641,6 +664,7 @@
 
 <script src="../js/contact-form.js"></script>
 <script src="../js/main.js"></script>
+<script src="../js/ports-map.js"></script>
 
 
 

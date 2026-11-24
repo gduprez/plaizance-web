@@ -85,6 +85,8 @@ function openBrevoForm(offerName) {
     }
   });
 
+  prefillHomePort();
+
   // le script Brevo (~460 Ko) n'est chargé qu'à la première ouverture du popup
   if (!brevoLoaded) {
     brevoLoaded = true;
@@ -92,6 +94,27 @@ function openBrevoForm(offerName) {
     script.src = BREVO_SCRIPT;
     document.body.appendChild(script);
   }
+}
+
+/* ================= PORT D'ATTACHE (carte des ports) ================= */
+
+// Ville choisie sur la carte des ports (bouton « Choisir mon offre », js/ports-map.js).
+// Gardée en mémoire le temps de la visite de la page : ni cookie, ni stockage.
+let homePort = "";
+let homePortFilled = ""; // dernière valeur écrite automatiquement dans le champ
+
+function rememberHomePort(city) {
+  homePort = city;
+}
+
+// Préremplit « Port d'attache » avec la ville choisie, sans écraser une saisie du visiteur.
+function prefillHomePort() {
+  const field = document.querySelector('#sib-form input[name="PORT_D_ATTACHE"]');
+  if (!field || !homePort) return;
+  if (field.value !== "" && field.value !== homePortFilled) return; // saisi à la main
+  field.value = homePort;
+  homePortFilled = homePort;
+  field.dispatchEvent(new Event("input", { bubbles: true })); // informe le script Brevo
 }
 
 // Nettoie le numéro (espaces, points, tirets, 0 initial) et vérifie son format.

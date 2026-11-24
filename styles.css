@@ -2300,3 +2300,389 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* ================= SECTION PORTS (carte Leaflet, js/ports-map.js) ================= */
+
+.section-ports {
+  padding: clamp(40px, 5vw, 60px) clamp(16px, 5vw, 40px) clamp(30px, 4vw, 48px);
+  background: #F5F5F7;
+  color: #171C3E;
+}
+
+.section-ports__contenu {
+  max-width: 1160px;
+  margin: 0 auto;
+}
+
+.ports-title {
+  text-align: center;
+  font-size: clamp(26px, 4vw, 40px);
+  font-weight: 600;
+  color: #171C3E;
+  margin-bottom: 14px;
+}
+
+.ports-title::before {
+  content: "";
+  display: block;
+  width: 48px;
+  height: 3px;
+  margin: 0 auto 17px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #FF7A59, #E6B85C);
+}
+
+.section-ports .section-ports__intro {
+  max-width: 680px;
+  margin: 0 auto clamp(22px, 4vw, 36px);
+  text-align: center;
+  font-size: clamp(15px, 1.7vw, 17px);
+  line-height: 1.65;
+}
+
+.section-ports__cadre {
+  padding: 7px;
+  border: 1px solid #DCE5EB;
+  border-radius: 22px;
+  background: #FFF;
+  box-shadow: 0 12px 36px rgba(23, 28, 62, 0.09);
+}
+
+.section-ports__carte {
+  position: relative;
+  z-index: 0; /* garde les calques Leaflet sous le header, le menu mobile et le popup */
+  width: 100%;
+  height: clamp(390px, 51vw, 575px);
+  border-radius: 15px;
+  background: #E7EEF1;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* message affiché si Leaflet ne se charge pas */
+.ports-map--error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  font-size: 16px;
+}
+
+.ports-map__fond {
+  filter: saturate(.75);
+}
+
+/* REPÈRES */
+.ports-map__repere {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: 0;
+  color: #171C3E;
+}
+
+.ports-map__repere:hover,
+.ports-map__repere:focus-visible,
+.ports-map__repere.est-selectionne {
+  color: #A84229;
+}
+
+.ports-map__repere svg {
+  width: 30px;
+  height: 38px;
+  filter: drop-shadow(0 2px 3px rgba(23, 28, 62, 0.33));
+}
+
+/* BOUTONS DE LA CARTE */
+.section-ports__carte .leaflet-bar {
+  border: 1px solid #DCE5EB;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(23, 28, 62, 0.13);
+}
+
+.section-ports__carte .leaflet-bar a,
+.ports-map__recentrage {
+  width: 42px;
+  height: 42px;
+  line-height: 42px;
+  color: #171C3E;
+  background: #FFF;
+}
+
+.ports-map__recentrage {
+  display: block;
+  border: 0;
+  cursor: pointer;
+  font-size: 23px;
+}
+
+.ports-map__recentrage:hover {
+  background: #F4F4F4;
+}
+
+/* FICHE D'UN PORT */
+.section-ports__carte .leaflet-popup-content-wrapper {
+  border-radius: 14px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.section-ports__carte .leaflet-popup-content {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.section-ports__carte .leaflet-popup-close-button {
+  top: 4px;
+  right: 4px;
+  color: #171C3E;
+}
+
+.ports-map__fiche {
+  padding: 14px 34px 16px 16px;
+  border-top: 3px solid #FF7A59;
+  color: #171C3E;
+}
+
+.ports-map__fiche strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.section-ports__carte .ports-map__fiche p {
+  margin: 5px 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: #4A5B6C;
+  overflow-wrap: anywhere;
+}
+
+.ports-map__choisir {
+  margin-top: 12px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #FF7A59 0%, #E6B85C 100%);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #FFF;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ports-map__choisir:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* MESSAGE « DEUX DOIGTS » (écrans tactiles) */
+.ports-map__hint {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(23, 28, 62, 0.55);
+  color: #FFF;
+  font-size: 17px;
+  font-weight: 500;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.ports-map--hint .ports-map__hint {
+  opacity: 1;
+}
+
+/* LISTE REPLIABLE DES PORTS */
+.ports-list {
+  margin-top: clamp(28px, 4vw, 40px);
+}
+
+/* bouton contour dégradé, comme .contact-btn */
+.ports-list summary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: fit-content;
+  height: 52px;
+  margin: 0 auto;
+  padding: 0 28px;
+
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: linear-gradient(#fff, #fff) padding-box,
+              linear-gradient(90deg, #FF7A59, #E6B85C) border-box;
+
+  font-size: 17px;
+  font-weight: 600;
+  color: #171C3E;
+  list-style: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.ports-list summary::-webkit-details-marker {
+  display: none;
+}
+
+/* chevron */
+.ports-list summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.3s;
+}
+
+.ports-list[open] summary::after {
+  margin-top: 4px;
+  transform: rotate(-135deg);
+}
+
+.ports-list summary:hover {
+  background: linear-gradient(90deg, #FF7A59, #E6B85C);
+  color: #FFF;
+}
+
+.ports-list__zones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 28px 32px;
+  margin-top: 26px;
+  padding: 28px;
+  border: 1px solid #DCE5EB;
+  border-radius: 16px;
+  background: #FFF;
+}
+
+.ports-list__zone h3 {
+  margin-bottom: 10px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #171C3E;
+}
+
+.ports-list__zone ul {
+  list-style: none;
+}
+
+.ports-list__zone li {
+  margin-bottom: 9px;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.ports-list__zone button {
+  display: block;
+  border: 0;
+  background: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #171C3E;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ports-list__zone button:hover {
+  color: #A84229;
+  text-decoration: underline;
+}
+
+.ports-list__zone span {
+  color: #4A5B6C;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .ports-list summary {
+    height: 48px;
+    padding: 0 22px;
+    font-size: 16px;
+  }
+
+  .section-ports__cadre {
+    padding: 4px;
+    border-radius: 16px;
+  }
+
+  .section-ports__carte {
+    height: clamp(360px, 64svh, 480px);
+    border-radius: 11px;
+  }
+
+  .ports-list__zones {
+    padding: 20px;
+  }
+}
+
+
+/* ================= MENU : LARGEURS INTERMÉDIAIRES ================= */
+/* 5 liens + sélecteur de langue : on resserre le menu, puis on passe au menu burger */
+
+.nav-right a {
+  white-space: nowrap;
+}
+
+@media (max-width: 1400px) {
+  .nav-right {
+    gap: 18px;
+  }
+
+  .nav-right a {
+    font-size: 15px;
+    letter-spacing: 2.5px;
+  }
+}
+
+@media (max-width: 1250px) {
+  .logo-menu {
+    width: 70px;
+    height: 56px;
+  }
+
+  .brand {
+    font-size: 24px;
+    letter-spacing: 4px;
+  }
+
+  .nav-right {
+    gap: 14px;
+  }
+
+  .nav-right a {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1100px) {
+  .nav-right {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
+
+  /* le header fait 100px de haut au-dessus de 768px */
+  .mobile-menu {
+    top: 100px;
+    height: calc(100vh - 100px);
+  }
+}
