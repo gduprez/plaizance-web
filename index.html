@@ -58,6 +58,7 @@
 
    <div class="nav-right">
      <a href="#service" >LE SERVICE</a>
+     <a href="#ports">NOS PORTS</a>
      <a href="#offres">NOS OFFRES</a>
      <a href="#contact">CONTACT</a>
      <a href="#about">À PROPOS</a>
@@ -83,6 +84,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
  <a href="#service">LE SERVICE</a>
+ <a href="#ports">NOS PORTS</a>
  <a href="#offres">NOS OFFRES</a>
  <a href="#contact">CONTACT</a>
  <a href="#about">À PROPOS</a>
@@ -224,6 +226,26 @@
 
 
 
+<section class="section-ports" id="ports" aria-labelledby="ports-titre">
+  <div class="section-ports__contenu">
+    <h2 class="ports-title" id="ports-titre">Nos ports d’intervention</h2>
+    <p class="section-ports__intro">De la Manche à la Méditerranée, Plaizance s’appuie sur des professionnels du nautisme pour les visites à bord et les interventions au port. Sélectionnez un repère pour découvrir le partenaire local.</p>
+
+    <!-- carte Leaflet générée par js/ports-map.js -->
+    <div class="section-ports__cadre">
+      <div class="section-ports__carte" id="ports-map" role="region" aria-label="Carte des ports d’intervention Plaizance"></div>
+    </div>
+
+    <!-- liste des ports générée par js/ports-map.js (un seul endroit à modifier : PORTS) -->
+    <details class="ports-list">
+      <summary>Voir la liste des ports</summary>
+      <div class="ports-list__zones" id="ports-list"></div>
+    </details>
+  </div>
+</section>
+
+
+
 <section class="section-pricing" id="offres">
   <h2 class="pricing-title">
     Nos offres de conciergerie connectée
@@ -292,7 +314,7 @@
     <li>1 rapport de visite mensuel*</li>
     <li>Intervention en cas d’alerte météo ou du bateau connecté</li>
     <li class="plus"><strong>1 rapport de santé mensuel**</strong></li>
-    <li class="plus"><strong>Rinçage du pont mensuel (pour les bateaux jusqu'à 10m***)</strong></li>
+    <li class="plus"><strong>Rinçage du pont mensuel, en fonction de la disponibilité et de l’autorisation pour cet usage d’eau douce sur le ponton (pour les bateaux jusqu'à 10m***)</strong></li>
   </ul>
 
   <p class="card-note">
@@ -332,9 +354,9 @@
     <li class="plus"><strong>2 rapports de visite mensuels*</strong></li>
     <li>Intervention en cas d’alerte météo ou du bateau connecté</li>
     <li>1 rapport de santé mensuel**</li>
-    <li>Rinçage du pont mensuel (pour les bateaux jusqu'à 10m***)</li>
+    <li>Rinçage du pont mensuel, en fonction de la disponibilité et de l’autorisation pour cet usage d’eau douce sur le ponton (pour les bateaux jusqu'à 10m***)</li>
     <li class="plus"><strong>Aération mensuelle du bateau</strong></li>
-    <li class="plus"><strong>Nettoyage complet du bateau avant saison</strong></li>
+    <li class="plus"><strong>Nettoyage extérieur du bateau avant saison, nettoyage intérieur possible sur devis</strong></li>
     <li class="plus"><strong>Hivernage de fin de saison (hors moteur)</strong></li>
   </ul>
 
@@ -372,9 +394,9 @@
     <li>2 rapports de visite mensuels*</li>
     <li>Intervention en cas d’alerte météo ou du bateau connecté</li>
     <li>1 rapport de santé mensuel**</li>
-    <li>Rinçage du pont mensuel (pour les bateaux jusqu'à 10m, longueur supérieure sur devis)</li>
+    <li>Rinçage du pont mensuel, en fonction de la disponibilité et de l’autorisation pour cet usage d’eau douce sur le ponton (pour les bateaux jusqu'à 10m, longueur supérieure sur devis)</li>
     <li>Aération mensuelle du bateau</li>
-    <li>Nettoyage complet du bateau avant saison</li>
+    <li>Nettoyage extérieur du bateau avant saison, nettoyage intérieur possible sur devis</li>
     <li>Hivernage de fin de saison (hors moteur)</li>
     <li class="plus"><strong>Entretien sellerie et inox avant saison</strong></li>
     <li class="plus"><strong>Préparation et avitaillement avant chaque sortie (5 maximum)</strong></li>
@@ -643,6 +665,7 @@
         <h4>Navigation</h4>
         <ul>
           <li><a href="#service">Le service</a></li>
+          <li><a href="#ports">Nos ports</a></li>
           <li><a href="#offres">Nos offres</a></li>
           <li><a href="#about">À propos</a></li>
           <li><a href="#contact">Contact</a></li>
@@ -707,6 +730,7 @@
 
 <script src="js/contact-form.js"></script>
 <script src="js/main.js"></script>
+<script src="js/ports-map.js"></script>
 
 
 

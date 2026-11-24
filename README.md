@@ -11,6 +11,8 @@ Site vitrine de **Plaizance**, service de conciergerie nautique connectée : sur
 - [styles.css](styles.css) — feuille de style commune à toutes les langues
 - [js/main.js](js/main.js) — script commun (menu mobile, sélecteur de langue, popup)
 - [js/contact-form.js](js/contact-form.js) — formulaire de contact Brevo, commun à toutes les langues (textes traduits dans `CONTACT_FORM_I18N`)
+- [js/ports-map.js](js/ports-map.js) — carte des ports d'intervention (liste des ports, textes traduits dans `PORTS_MAP_I18N`)
+- [vendor/leaflet/](vendor/leaflet/) — copie locale de Leaflet 1.9.4 (bibliothèque de carte)
 - [images/](images/) — logos, photos, visuels ; drapeaux dans [images/flags/](images/flags/)
 
 ## Langues
@@ -28,6 +30,7 @@ Pour ajouter une langue (ex. espagnol, code `es`) :
 4. Formulaire de contact : créer le formulaire dans Brevo (mêmes attributs de contact), puis ajouter
    la langue dans `CONTACT_FORM_I18N` de [js/contact-form.js](js/contact-form.js) avec son adresse `action`
    (à prendre dans le code d'intégration HTML Brevo) et les textes traduits.
+5. Carte des ports : ajouter la langue dans `PORTS_MAP_I18N` et dans `ZONES` de [js/ports-map.js](js/ports-map.js).
 
 ## Formulaire de contact (Brevo)
 
@@ -39,6 +42,21 @@ Le popup de contact contient un formulaire Brevo généré par [js/contact-form.
 - Le champ téléphone n'utilise pas le composant Brevo : il est vérifié et nettoyé par [js/main.js](js/main.js).
 - Si un champ est ajouté dans Brevo, l'ajouter aussi dans le modèle de `js/contact-form.js`
   (même `name` que dans le code d'intégration Brevo).
+
+## Carte des ports
+
+La section « Nos ports d'intervention » est générée par [js/ports-map.js](js/ports-map.js) (Leaflet, fond Plan IGN).
+
+- **Ajouter ou modifier un port** : éditer uniquement la liste `PORTS` en tête du fichier
+  (`ville`, `partenaire` — vide s'il n'y en a pas —, `zone`, `lat`, `lng`).
+  La carte et la liste repliable sous la carte se mettent à jour, en français comme en anglais.
+- Leaflet et les fonds de carte ne sont chargés qu'à l'approche de la section.
+  Pour un chargement immédiat, appeler `loadLeaflet()` directement à la place de l'`IntersectionObserver`.
+- Le bouton « Choisir mon offre » d'une fiche mémorise la ville (`rememberHomePort()` dans [js/main.js](js/main.js))
+  et préremplit le champ « Port d'attache » du formulaire de contact.
+- Sur écran tactile, un doigt fait défiler la page ; la carte se déplace à deux doigts.
+- Mise à jour de Leaflet : remplacer `leaflet.js`, `leaflet.css` et `images/` dans [vendor/leaflet/](vendor/leaflet/)
+  par ceux du dossier `dist/` de la nouvelle version.
 
 ## Stack
 
