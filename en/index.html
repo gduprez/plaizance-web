@@ -214,10 +214,67 @@
       <div class="section-ports__carte" id="ports-map" role="region" aria-label="Map of the ports where Plaizance operates"></div>
     </div>
 
-    <!-- liste des ports générée par js/ports-map.js (un seul endroit à modifier : PORTS) -->
+    <!-- LISTE DES PORTS : source de la carte (lue par js/ports-map.js) et texte indexé par les moteurs.
+         Un port = un <li data-lat data-lng> : ville dans le <button>, partenaire éventuel dans le <span>.
+         À modifier AUSSI dans index.html (mêmes ports, mêmes villes, zones traduites). -->
     <details class="ports-list">
       <summary>See the list of ports</summary>
-      <div class="ports-list__zones" id="ports-list"></div>
+      <div class="ports-list__zones" id="ports-list">
+        <div class="ports-list__zone">
+          <h3>English Channel</h3>
+          <ul>
+            <li data-lat="49.760" data-lng="0.370"><button type="button">Fécamp</button><span>MG Nautic</span></li>
+            <li data-lat="49.588" data-lng="-1.266"><button type="button">Saint-Vaast-la-Hougue</button><span>Cherbourg Plaisance</span></li>
+            <li data-lat="49.648" data-lng="-1.620"><button type="button">Cherbourg</button><span>Cherbourg Plaisance</span></li>
+            <li data-lat="49.555" data-lng="-1.859"><button type="button">Diélette</button><span>Cherbourg Plaisance</span></li>
+            <li data-lat="49.376" data-lng="-1.791"><button type="button">Carteret</button><span>Cherbourg Plaisance</span></li>
+            <li data-lat="48.638" data-lng="-2.247"><button type="button">Saint-Cast-le-Guildo</button><span>Fil Marine</span></li>
+          </ul>
+        </div>
+        <div class="ports-list__zone">
+          <h3>Atlantic</h3>
+          <ul>
+            <li data-lat="48.382" data-lng="-4.485"><button type="button">Brest</button><span>Naviouest</span></li>
+            <li data-lat="47.875" data-lng="-4.117"><button type="button">Combrit–Sainte-Marine</button><span>Sur les flots</span></li>
+            <li data-lat="47.616" data-lng="-2.820"><button type="button">Arradon (Vannes)</button><span>Le Blan Marine</span></li>
+            <li data-lat="47.258" data-lng="-2.348"><button type="button">Pornichet</button><span>KER Nautic Services</span></li>
+            <li data-lat="43.370" data-lng="-1.782"><button type="button">Hendaye</button><span>Bateaux Basques</span></li>
+          </ul>
+        </div>
+        <div class="ports-list__zone">
+          <h3>Mediterranean</h3>
+          <ul>
+            <li data-lat="42.702" data-lng="3.035"><button type="button">Canet-en-Roussillon</button></li>
+            <li data-lat="42.864" data-lng="3.042"><button type="button">Port Leucate</button><span>AB Yachting</span></li>
+            <li data-lat="43.398" data-lng="3.706"><button type="button">Sète</button><span>SAS Grace</span></li>
+            <li data-lat="43.524" data-lng="4.128"><button type="button">Port Camargue</button><span>Lion Yachting</span></li>
+            <li data-lat="43.429" data-lng="4.945"><button type="button">Fos-sur-Mer</button><span>Côte Bleue Plaisance</span></li>
+            <li data-lat="43.170" data-lng="5.695"><button type="button">Saint-Cyr-sur-Mer</button><span>ND Plaisance / Boat Club Madrague</span></li>
+            <li data-lat="43.135" data-lng="5.752"><button type="button">Bandol</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.117" data-lng="5.800"><button type="button">Sanary-sur-Mer</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.100" data-lng="5.810"><button type="button">Six-Fours-les-Plages</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.079" data-lng="5.783"><button type="button">Les Embiez</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.079" data-lng="5.927"><button type="button">Saint-Mandrier-sur-Mer</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.119" data-lng="5.933"><button type="button">Toulon</button><span>Edouard Rohart FreeSpi</span></li>
+            <li data-lat="43.272" data-lng="6.580"><button type="button">Port Grimaud</button><span>LC Yachting</span></li>
+            <li data-lat="43.421" data-lng="6.748"><button type="button">Fréjus</button><span>Selestiboat</span></li>
+          </ul>
+        </div>
+        <div class="ports-list__zone">
+          <h3>Corsica</h3>
+          <ul>
+            <li data-lat="41.919" data-lng="8.742"><button type="button">Ajaccio</button><span>Motorship Nautique</span></li>
+            <li data-lat="41.677" data-lng="8.900"><button type="button">Propriano</button><span>Motorship Nautique</span></li>
+          </ul>
+        </div>
+        <div class="ports-list__zone">
+          <h3>Inland waters</h3>
+          <ul>
+            <li data-lat="45.703" data-lng="5.887"><button type="button">Aix-les-Bains</button></li>
+          </ul>
+        </div>
+
+      </div>
     </details>
   </div>
 </section>
